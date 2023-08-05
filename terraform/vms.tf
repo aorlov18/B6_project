@@ -28,10 +28,15 @@ resource "yandex_compute_instance" "vm-test1" {
     nat       = true
   }
 
+  #metadata = {
+  #  user-data = "${file("../meta.txt")}"
+  #}
+  #metadata = {
+  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
+  #}
   metadata = {
-    user-data = "${file("../meta.txt")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
-
   scheduling_policy {
     preemptible = true
   }
@@ -61,8 +66,14 @@ resource "yandex_compute_instance" "vm-test2" {
     nat       = true
   }
 
+  #metadata = {
+  #  user-data = "${file("../meta.txt")}"
+  #}
+  #metadata = {
+  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
+  #}
   metadata = {
-    user-data = "${file("../meta.txt")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 
   scheduling_policy {
@@ -94,9 +105,16 @@ resource "yandex_compute_instance" "vm-test3" {
     nat       = true
   }
 
+  #metadata = {
+  #  user-data = "${file("../meta.txt")}"
+  #}
+  #metadata = {
+  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
+  #}
   metadata = {
-    user-data = "${file("../meta.txt")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
+
 
   scheduling_policy {
     preemptible = true
@@ -110,7 +128,7 @@ resource "yandex_vpc_network" "network_terraform" {
 
 resource "yandex_vpc_subnet" "subnet_terraform" {
   name           = "subnet_terraform"
-  zone           = "ru-central1-a"
+  zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.network_terraform.id
   v4_cidr_blocks = ["192.168.15.0/24"]
 }
