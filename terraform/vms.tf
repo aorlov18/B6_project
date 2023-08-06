@@ -29,10 +29,15 @@ resource "yandex_compute_instance" "vm-test1" {
   }
 
   
+  #metadata = {
+  #  ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+  #  sensitive = true
+  #}
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    user-data = "${file("../meta.yml")}"
     sensitive = true
   }
+
   scheduling_policy {
     preemptible = true
   }
@@ -63,8 +68,12 @@ resource "yandex_compute_instance" "vm-test2" {
   }
 
   
+  #metadata = {
+  #  ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+  #  sensitive = true
+  #}
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    user-data = "${file("../meta.yml")}"
     sensitive = true
   }
 
@@ -98,8 +107,12 @@ resource "yandex_compute_instance" "vm-test3" {
   }
 
   
+  #metadata = {
+  #  ssh-keys = "cloud-user:${file("~/.ssh/id_rsa.pub")}"
+  #  sensitive = true
+  #}
   metadata = {
-    ssh-keys = "cloud-user:${file("~/.ssh/id_rsa.pub")}"
+    user-data = "${file("../meta.yml")}"
     sensitive = true
   }
 
