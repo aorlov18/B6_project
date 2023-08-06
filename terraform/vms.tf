@@ -31,6 +31,7 @@ resource "yandex_compute_instance" "vm-test1" {
   
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    sensitive = true
   }
   scheduling_policy {
     preemptible = true
@@ -64,6 +65,7 @@ resource "yandex_compute_instance" "vm-test2" {
   
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    sensitive = true
   }
 
   scheduling_policy {
@@ -98,6 +100,7 @@ resource "yandex_compute_instance" "vm-test3" {
   
   metadata = {
     ssh-keys = "cloud-user:${file("~/.ssh/id_rsa.pub")}"
+    sensitive = true
   }
 
 
