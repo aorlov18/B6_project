@@ -28,12 +28,7 @@ resource "yandex_compute_instance" "vm-test1" {
     nat       = true
   }
 
-  #metadata = {
-  #  user-data = "${file("../meta.txt")}"
-  #}
-  #metadata = {
-  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
-  #}
+  
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
@@ -66,12 +61,7 @@ resource "yandex_compute_instance" "vm-test2" {
     nat       = true
   }
 
-  #metadata = {
-  #  user-data = "${file("../meta.txt")}"
-  #}
-  #metadata = {
-  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
-  #}
+  
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
@@ -105,12 +95,7 @@ resource "yandex_compute_instance" "vm-test3" {
     nat       = true
   }
 
-  #metadata = {
-  #  user-data = "${file("../meta.txt")}"
-  #}
-  #metadata = {
-  #  ssh-keys = "${var.ssh_credentials.user}:${file(var.ssh_credentials.pub_key)}"
-  #}
+  
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
