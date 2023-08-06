@@ -97,14 +97,13 @@ resource "yandex_compute_instance" "vm-test3" {
 
   
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "cloud-user:${file("~/.ssh/id_rsa.pub")}"
   }
 
 
   scheduling_policy {
     preemptible = true
   }
-
 }
 
 resource "yandex_vpc_network" "network_terraform" {
