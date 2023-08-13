@@ -1,7 +1,7 @@
 ---  
 - hosts: app
   gather_facts: yes
-  user: root
+  user: user
   become: true
   become_method: sudo
   become_user: root
@@ -46,7 +46,7 @@
 
 - hosts: database
   gather_facts: yes
-  user: root
+  user: user
   become: true
   become_method: sudo
   become_user: root
@@ -70,7 +70,6 @@
       - "postgresql-client-{{ pg_ver }}"
 
   - name: "Create {{ pg_data }} Directory"
-    become: true
     file:
       path: "{{ pg_data }}"
       state: directory
