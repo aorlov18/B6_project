@@ -4,5 +4,5 @@ terraform/terraform.tfstate
 terraform.tfstate
 terraform/terraform.tfstate.backup
 key.json
-meta.txt
+meta.yml
 id_rsa
