@@ -1,0 +1,5 @@
+pg_ver: 14
+pg_data: /data/pgsql
+postgresql_bin_path: "/usr/lib/postgresql/{{ pg_ver }}/bin"
+postgresql_data_dir: "/var/lib/postgresql/{{ pg_ver }}/main"
+ansible_ssh_pipelining: true

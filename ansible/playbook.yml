@@ -50,7 +50,8 @@
   become: true
   become_method: sudo
   become_user: root
-
+  vars_files:
+    - vars.yml
   tasks:
   - name: Add postgresql repo key
     shell: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -81,14 +82,15 @@
     shell: "ls {{ pg_data }}"
     register: pg_contents
 
+
   - name: Initialize PostgreSQL
     shell: "/usr/lib/postgresql/{{ pg_ver }}/bin/initdb"
     environment:
       PGDATA: "{{ pg_data }}"
     when: pg_contents["stdout_lines"] | length == 0
-    become: yes
+    become: true
     become_user: postgres
-
+    
   - name: Setting postgres
     replace:
       path: "/etc/postgresql/{{ pg_ver }}/main/postgresql.conf"
@@ -104,7 +106,7 @@
       state: started
 
   handlers:
-  - name: reload postgres
-    systemd:
-      name: "postgresql@{{ pg_ver }}-main"
-      state: restarted
+    - name: reload postgres
+      systemd:
+        name: "postgresql@{{ pg_ver }}-main"
+        state: restarted
